@@ -1,12 +1,18 @@
-data/dataset
-data/output
+# Ignore dataset and output directories
+data/dataset/
+data/output/
 
-models/binaries
-models/checkpoints
+# Ignore model binaries and training checkpoints
+models/binaries/
+models/checkpoints/
 
-/runs
+# Ignore experiment run logs
+/runs/
 
+# Ignore system and Python cache files
 .DS_Store
 __pycache__/
 *.ipynb_checkpoints
-venv
+
+# Ignore Python virtual environment
+venv/
