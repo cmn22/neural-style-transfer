@@ -15,8 +15,12 @@ class ModelConfig(TypedDict):
 HF_REPO = "cmn22/neural_style_transfer"
 MODEL_FILES: Dict[str, ModelConfig] = {
     "candy.pth": {"repo_id": HF_REPO, "filename": "candy.pth"},
+    "cubism.pth": {"repo_id": HF_REPO, "filename": "cubism.pth"},
     "edtaonisl.pth": {"repo_id": HF_REPO, "filename": "edtaonisl.pth"},
+    "ghibli.pth": {"repo_id": HF_REPO, "filename": "ghibli.pth"},
     "mosaic.pth": {"repo_id": HF_REPO, "filename": "mosaic.pth"},
+    "pop-art.pth": {"repo_id": HF_REPO, "filename": "pop-art.pth"},
+    "sci-fi.pth": {"repo_id": HF_REPO, "filename": "sci-fi.pth"},
     "vg_starry_night.pth": {"repo_id": HF_REPO, "filename": "vg_starry_night.pth"}
 }
 
