@@ -29,8 +29,12 @@ os.makedirs(output_dir, exist_ok=True)
 
 # --- Page Layout ---
 st.set_page_config(page_title="Neural Style Transfer", layout="wide")
-st.title("🎨 Neural Style Transfer")
-tab1, tab2 = st.tabs(["🖼️ Image", "🎞️ Video"])
+st.title("Neural Style Transfer")
+st.markdown(
+    "<small>🔗 View the source code on <a href='https://github.com/cmn22/neural-style-transfer' target='_blank'>GitHub</a></small>",
+    unsafe_allow_html=True
+)
+tab1, tab2 = st.tabs(["Image", "Video"])
 
 # === Image Tab ===
 with tab1:
