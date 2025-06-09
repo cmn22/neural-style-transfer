@@ -119,7 +119,7 @@ with tab2:
                     "input_video": os.path.join(input_dir, input_video),
                     "output_name": output_name,
                     "img_width": video_width,
-                    "verbose": verbose,
+                    "verbose": False,
                     "model_name": model_choice_vid,
                     "output_path": output_dir,
                     "model_binaries_path": model_dir,
