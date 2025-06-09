@@ -8,13 +8,14 @@ import os
 import argparse
 import torch
 from torch.utils.data import DataLoader
+from PIL import Image
 
 # Custom utility functions and dataset
 import utils.utils as utils
 from models.definitions.transformer_net import TransformerNet
 
 
-def stylize_static_image(config):
+def stylize_static_image(config, return_pil=False):
     """
     Apply style transfer to images using a pretrained model.
 
@@ -69,7 +70,12 @@ def stylize_static_image(config):
             input_path = os.path.join(config["content_images_path"], config["content_input"])
             input_img = utils.prepare_img(input_path, config["img_width"], device)
             output_img = model(input_img).to('cpu').numpy()[0]
-            utils.save_and_maybe_display_image(config, output_img, should_display=config["should_not_display"])
+            
+            if return_pil:
+                img_array = utils.post_process_image(output_img)
+                return Image.fromarray(img_array)
+            else:
+                utils.save_and_maybe_display_image(config, output_img, should_display=config["should_not_display"])
 
 
 def build_config():
