@@ -4,7 +4,7 @@ import time
 
 import torch
 from torch.optim import Adam
-from torch.utils.tensorboard import SummaryWriter
+from torch.utils.tensorboard.writer import SummaryWriter
 import numpy as np
 
 from models.definitions.perceptual_loss_net import PerceptualLossNet
