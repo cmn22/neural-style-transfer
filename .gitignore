@@ -1,4 +1,11 @@
-data/
-models/
+data/dataset
+data/output
+
+models/binaries
+models/checkpoints
+
+/runs
+
 __pycache__/
 *.ipynb_checkpoints
+venv
