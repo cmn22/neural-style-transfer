@@ -100,8 +100,7 @@ with tab2:
 
     model_choice_vid = st.selectbox("Choose a style model", model_files, key="vid_model")
     video_width = st.slider("Resize width (px)", 256, 1280, 500, step=32)
-    smoothing_alpha = st.slider("Smoothing Alpha (0.0 = off)", 0.0, 1.0, 0.3, step=0.05)
-    verbose = st.checkbox("Verbose Output", value=False, key="verbose_vid")
+    smoothing_alpha = st.slider("Smoothing Alpha (0.0 = off)", 0.0, 1.0, 0.0, step=0.05)
 
     if (uploaded_vid or video_choice != "None") and model_choice_vid:
         if st.button("Stylize Video"):
