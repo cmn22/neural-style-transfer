@@ -43,8 +43,9 @@ It includes:
 │   ├── pretrained_models_downloader.py  # Script to download pre-trained style models
 │   ├── training_dataset_downloader.py   # Script to download and extract COCO dataset
 └── data/
-    ├── input/                        # Input images and videos
-    └── output/                       # Stylized results
+    ├── input/              # Input images and videos
+    ├── styles/             # Styling base images
+    └── output/             # Stylized results
 ```
 
 ---
