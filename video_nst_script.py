@@ -47,11 +47,13 @@ def stylize_video(config):
 
     os.makedirs(config["output_path"], exist_ok=True)
     output_path = os.path.join(config["output_path"], config["output_name"])
-    out_writer = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height)) # type: ignore
+    out_writer = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height))  # type: ignore
 
-    # Frame-by-frame stylization
-    prev_stylized_frame = None
-    smoothing_alpha = config["smoothing_alpha"]  # Higher = more weight to previous frame
+    smoothing_alpha = config["smoothing_alpha"]
+    use_smoothing = smoothing_alpha > 0.0
+    if use_smoothing:
+        prev_stylized_frame = None
+
     with torch.no_grad():
         for _ in tqdm(range(total_frames), desc="Stylizing frames"):
             ret, frame = cap.read()
@@ -66,10 +68,14 @@ def stylize_video(config):
             output_tensor = model(content_tensor).cpu().numpy()[0]
             stylized_frame = utils.post_process_image(output_tensor)
 
-            # Temporal smoothing: blend with previous stylized frame
-            if prev_stylized_frame is not None:
-                stylized_frame = cv2.addWeighted(stylized_frame, 1 - smoothing_alpha, prev_stylized_frame, smoothing_alpha, 0)
-            prev_stylized_frame = stylized_frame.copy()
+            # Temporal smoothing
+            if use_smoothing:
+                if prev_stylized_frame is not None:
+                    stylized_frame = cv2.addWeighted(
+                        stylized_frame, 1 - smoothing_alpha,
+                        prev_stylized_frame, smoothing_alpha, 0
+                    )
+                prev_stylized_frame = stylized_frame.copy()
 
             # Write to video
             bgr_stylized = cv2.cvtColor(stylized_frame, cv2.COLOR_RGB2BGR)
