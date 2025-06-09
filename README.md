@@ -36,10 +36,10 @@ It includes:
 │   ├── definitions/
 │   │   ├── transformer_net.py         # Transformer feedforward network
 │   │   └── perceptual_loss_net.py     # VGG16-based perceptual loss extractor
-│   └── binaries/                    # Pretrained .pth models
+│   └── binaries/                      # Pretrained .pth models
 ├── utils/
-│   ├── utils.py                       # Shared preprocessing, postprocessing, I/O, and dataset utils
-│   ├── app_utils.py                   # Utility helpers for Streamlit app
+│   ├── utils.py                         # Shared preprocessing, postprocessing, I/O, and dataset utils
+│   ├── app_utils.py                     # Utility helpers for Streamlit app
 │   ├── pretrained_models_downloader.py  # Script to download pre-trained style models
 │   ├── training_dataset_downloader.py   # Script to download and extract COCO dataset
 └── data/
