@@ -15,6 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from torchvision import transforms, datasets
 from torch.utils.data import Dataset, DataLoader, Sampler
+from typing import Any, List
 import torch
 import git
 
@@ -423,3 +424,28 @@ def count_parameters(model):
         int: Number of trainable parameters.
     """
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+
+# === Video Frame to Tensor Helper ===
+def frame_to_tensor(frame, device, should_normalize=True):
+    """
+    Convert a BGR video frame (OpenCV format) to a normalized torch tensor.
+
+    Args:
+        frame (np.ndarray): Input BGR frame from OpenCV (H, W, C).
+        device (torch.device): Device to move the tensor to.
+        should_normalize (bool): Whether to apply ImageNet normalization.
+
+    Returns:
+        torch.Tensor: Tensor of shape (1, C, H, W) ready for model input.
+    """
+    img = frame[:, :, ::-1]  # Convert BGR to RGB
+    img = img.astype(np.float32) / 255.0
+
+    transform_list: List[Any] = [transforms.ToTensor()]
+    if should_normalize:
+        transform_list.append(transforms.Normalize(mean=IMAGENET_MEAN_1, std=IMAGENET_STD_1))
+
+    transform = transforms.Compose(transform_list)
+    tensor = transform(img).unsqueeze(0).to(device)
+    return tensor
