@@ -198,7 +198,6 @@ Core helpers:
 | Model File          | Style                    |
 |---------------------|--------------------------|
 | `vg_starry_night.pth` | Vincent van Gogh’s Starry Night |
-| `la_muse.pth`         | Pablo Picasso’s La Muse  |
 | `candy.pth`           | Bright pastel stroke style |
 
 > Place these inside: `models/binaries/`
